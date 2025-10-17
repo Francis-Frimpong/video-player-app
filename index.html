@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Video Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="video-container">
+      <video
+        id="video"
+        class="video"
+        src="video.mp4"
+        poster="poster.jpg"
+      ></video>
+
+      <div class="controls-container">
+        <!-- Progress Bar -->
+        <div class="progress-area">
+          <input
+            type="range"
+            class="progress-bar"
+            value="0"
+            min="0"
+            max="100"
+          />
+          <div class="progress-time">
+            <span class="current-time">00:00</span> /
+            <span class="duration">00:00</span>
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="controls">
+          <div class="left-controls">
+            <button class="control-btn play-pause" title="Play/Pause">
+              <i class="fa fa-play"></i>
+            </button>
+
+            <button class="control-btn stop" title="Stop">
+              <i class="fa fa-stop"></i>
+            </button>
+
+            <div class="volume-container">
+              <button class="control-btn volume" title="Volume">
+                <i class="fa fa-volume-up"></i>
+              </button>
+              <input
+                type="range"
+                class="volume-bar"
+                min="0"
+                max="1"
+                step="0.05"
+                value="1"
+              />
+            </div>
+          </div>
+
+          <div class="right-controls">
+            <button class="control-btn captions" title="Captions">
+              <i class="fa fa-closed-captioning"></i>
+            </button>
+
+            <button class="control-btn fullscreen" title="Fullscreen">
+              <i class="fa fa-expand"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Font Awesome Icons -->
+
+    <script src="app.js"></script>
+  </body>
+</html>
