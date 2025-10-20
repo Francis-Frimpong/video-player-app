@@ -5,6 +5,7 @@ class VideoPlayer {
     this.fullScreenBtn = document.querySelector(".fullscreen");
     this.progressBar = document.querySelector(".progress-bar");
     this.videoDuration = document.querySelector(".duration");
+    this.currentTime = document.querySelector(".current-time");
   }
 
   playVideo() {
@@ -46,6 +47,35 @@ class VideoPlayer {
     this.videoDuration.textContent = `${padMinutes}:${padSeconds}`;
   }
 
+  videoTimer() {
+    let padMinutes;
+    let padSeconds;
+    const currentPlayTime = Math.floor(this.video.currentTime);
+    let currentMinutes = Math.floor(currentPlayTime / 60);
+
+    let remainingSeconds = currentMinutes * 60;
+    let convertDuration = currentPlayTime - remainingSeconds;
+
+    if (currentMinutes < 10) {
+      padMinutes = "0".concat(currentMinutes);
+    } else {
+      padMinutes = currentMinutes;
+    }
+
+    if (convertDuration < 10) {
+      padSeconds = "0".concat(convertDuration);
+    } else {
+      padSeconds = convertDuration;
+    }
+
+    this.currentTime.textContent = `${padMinutes}:${padSeconds}`;
+  }
+
+  onVideoTick() {
+    let percent = (this.video.currentTime / this.video.duration) * 100;
+    this.progressBar.value = percent;
+  }
+
   addEventListeners() {
     this.playBtn.addEventListener("click", () => this.playVideo());
     this.fullScreenBtn.addEventListener("click", () => this.videoFullScreen());
@@ -53,6 +83,11 @@ class VideoPlayer {
     this.video.addEventListener("loadedmetadata", () =>
       this.totalVideoDuration()
     );
+
+    this.video.addEventListener("timeupdate", () => {
+      this.videoTimer();
+      this.onVideoTick();
+    });
 
     this.video.addEventListener("timeupdate", () => {
       this.progressBar.value =
