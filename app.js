@@ -7,6 +7,7 @@ class VideoPlayer {
     this.progressBar = document.querySelector(".progress-bar");
     this.videoDuration = document.querySelector(".duration");
     this.currentTime = document.querySelector(".current-time");
+    this.volumeBar = document.querySelector(".volume-bar");
   }
 
   playVideo() {
@@ -27,6 +28,11 @@ class VideoPlayer {
   onSliderDrag() {
     let seekTime = (this.progressBar.value / 100) * this.video.duration;
     this.video.currentTime = seekTime;
+  }
+
+  videoVolume() {
+    const newVolume = Number(this.volumeBar.value) / 100;
+    this.video.volume = newVolume;
   }
 
   totalVideoDuration() {
@@ -104,6 +110,8 @@ class VideoPlayer {
     });
 
     this.progressBar.addEventListener("input", () => this.onSliderDrag());
+
+    this.volumeBar.addEventListener("input", () => this.videoVolume());
   }
 }
 
