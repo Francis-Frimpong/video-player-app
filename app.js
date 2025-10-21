@@ -2,6 +2,7 @@ class VideoPlayer {
   constructor() {
     this.video = document.getElementById("video");
     this.playBtn = document.querySelector(".play-pause");
+    this.stopBtn = document.querySelector(".stop");
     this.fullScreenBtn = document.querySelector(".fullscreen");
     this.progressBar = document.querySelector(".progress-bar");
     this.videoDuration = document.querySelector(".duration");
@@ -11,6 +12,12 @@ class VideoPlayer {
   playVideo() {
     const playVideo = this.video.play();
     return playVideo;
+  }
+
+  stopVideo() {
+    const stopVideo = this.video.pause();
+    this.video.currentTime = 0;
+    return stopVideo;
   }
 
   videoFullScreen() {
@@ -78,6 +85,8 @@ class VideoPlayer {
 
   addEventListeners() {
     this.playBtn.addEventListener("click", () => this.playVideo());
+
+    this.stopBtn.addEventListener("click", () => this.stopVideo());
     this.fullScreenBtn.addEventListener("click", () => this.videoFullScreen());
 
     this.video.addEventListener("loadedmetadata", () =>
