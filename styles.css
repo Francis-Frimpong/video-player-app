@@ -84,7 +84,9 @@ body {
   align-items: center;
   gap: 10px;
 }
-
+.hide {
+  display: none;
+}
 .control-btn {
   background: none;
   border: none;

@@ -1,7 +1,8 @@
 class VideoPlayer {
   constructor() {
     this.video = document.getElementById("video");
-    this.playBtn = document.querySelector(".play-pause");
+    this.playBtn = document.querySelector(".fa-play");
+    this.pauseBtn = document.querySelector(".fa-pause");
     this.stopBtn = document.querySelector(".stop");
     this.fullScreenBtn = document.querySelector(".fullscreen");
     this.progressBar = document.querySelector(".progress-bar");
@@ -12,12 +13,33 @@ class VideoPlayer {
 
   playVideo() {
     const playVideo = this.video.play();
+    if (playVideo) {
+      this.playBtn.classList.add("hide");
+      this.pauseBtn.classList.remove("hide");
+    } else {
+      this.pauseBtn.classList.add("hide");
+      this.playBtn.classList.remove("hide");
+    }
     return playVideo;
+  }
+
+  pauseVideo() {
+    const pauseVideo = this.video.pause();
+    if (pauseVideo) {
+      this.playBtn.classList.add("hide");
+      this.pauseBtn.classList.remove("hide");
+    } else {
+      this.pauseBtn.classList.add("hide");
+      this.playBtn.classList.remove("hide");
+    }
+    return pauseVideo;
   }
 
   stopVideo() {
     const stopVideo = this.video.pause();
     this.video.currentTime = 0;
+    this.pauseBtn.classList.add("hide");
+    this.playBtn.classList.remove("hide");
     return stopVideo;
   }
 
@@ -91,6 +113,7 @@ class VideoPlayer {
 
   addEventListeners() {
     this.playBtn.addEventListener("click", () => this.playVideo());
+    this.pauseBtn.addEventListener("click", () => this.pauseVideo());
 
     this.stopBtn.addEventListener("click", () => this.stopVideo());
     this.fullScreenBtn.addEventListener("click", () => this.videoFullScreen());
